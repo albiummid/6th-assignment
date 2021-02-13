@@ -81,7 +81,7 @@ const createSlider = () => {
     alert("Duration can't be Negetive.Please input positive value.");
   }
   else{
-    duration = durationInput || 1000;
+    duration = durationInput * 1000 || 1000;
   }
   sliders.forEach(slide => {
     let item = document.createElement('div')
