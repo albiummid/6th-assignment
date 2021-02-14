@@ -21,8 +21,8 @@ const showImages = (images) => {
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
     let div = document.createElement('div');
-    div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid h-100 w-100 img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2 imageDiv ';
+    div.innerHTML = ` <img class="img-fluid h-75 w-75 img-thumbnail image" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
   spinnerHandler();

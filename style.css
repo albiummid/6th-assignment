@@ -55,10 +55,20 @@ img {
   display: none;
 }
 
+.imageDiv{
+  transition: 300ms;
+}
+.imageDiv:hover{
+transform: scale(1.2);
+}
 
 @media (max-width: 767px) {
   .justify-content-around.align-items-center.mt-3.gallery-header.mb-2 {
     flex-direction: column;
+  }
+  img{
+display: flex;
+margin: auto;
   }
   #sliders {
     height: 300px;
