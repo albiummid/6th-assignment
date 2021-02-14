@@ -56,12 +56,12 @@ const selectItem = (event, img) => {
     sliders.push(img);
   } 
   if(item !== -1) {
-    console.log(item);
     const newSlideArray = sliders.filter(s=> s !== img);
     sliders = newSlideArray;
-    return selectItem();
   }
+ 
 }
+
 var timer
 const createSlider = () => {
   // check slider image length
@@ -103,7 +103,6 @@ const createSlider = () => {
 
   
   sliders.forEach(slide => {
-    console.log(slide);
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `<img class="w-100"
@@ -116,6 +115,16 @@ const createSlider = () => {
     slideIndex++;
     changeSlide(slideIndex);
   }, duration);
+}
+
+const PreviewManager = () =>{
+ sliders.forEach(slide =>{
+   const preview = document.getElementById("preview")
+   let PreviewDiv = document.createElement("div");
+   PreviewDiv.className = "d-flex justify-content center g-2"
+   PreviewDiv.innerHTML = `<img src='${slide}' class="w-50 img-fluid">`
+preview.appendChild(PreviewDiv);
+ })
 }
 
 // change slider index 
