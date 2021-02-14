@@ -59,7 +59,7 @@ const selectItem = (event, img) => {
     console.log(item);
     const newSlideArray = sliders.filter(s=> s !== img);
     sliders = newSlideArray;
-    console.log(newSlideArray);
+    return selectItem();
   }
 }
 var timer
