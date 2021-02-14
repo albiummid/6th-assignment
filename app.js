@@ -54,8 +54,12 @@ const selectItem = (event, img) => {
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-  } else {
-    sliders.pop(img);
+  } 
+  if(item !== -1) {
+    console.log(item);
+    const newSlideArray = sliders.filter(s=> s !== img);
+    sliders = newSlideArray;
+    console.log(newSlideArray);
   }
 }
 var timer
@@ -97,7 +101,9 @@ const createSlider = () => {
     searchBtn.click();
   }
 
+  
   sliders.forEach(slide => {
+    console.log(slide);
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `<img class="w-100"
