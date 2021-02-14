@@ -22,9 +22,10 @@ const showImages = (images) => {
   images.forEach(image => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid h-100 w-100" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = ` <img class="img-fluid h-100 w-100 img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
+  spinnerHandler();
 
 }
 // enterButton Enabler
@@ -38,6 +39,7 @@ searchInput.addEventListener("keypress",function(event){
 
 
 const getImages = (query) => {
+  spinnerHandler();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -77,12 +79,24 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   const durationInput =document.getElementById('duration').value;
-  if(durationInput < 0){
-    alert("Duration can't be Negetive.Please input positive value.");
+  if(durationInput > 0){
+    duration = durationInput ;
+  }
+  else if(durationInput == 0){
+    duration = 1000;
+  }
+  else if(durationInput < 0){
+    alert("Duration can't be negative !")
+    document.getElementById("duration").value = ""
+    searchBtn.click();
+    
   }
   else{
-    duration = durationInput * 1000 || 1000;
+    alert("Wrong input !!!")
+    document.getElementById("duration").value = ""
+    searchBtn.click();
   }
+
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -135,3 +149,9 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+// bonus function -- spinnerHandler
+const spinnerHandler = () =>{
+  const loadingSpinner = document.getElementById("spinner");
+  loadingSpinner.classList.toggle("d-none")
+}
